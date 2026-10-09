@@ -36,3 +36,12 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+# Local AI workflow, instructions, plans and design references.
+/AGENTS.md
+/CLAUDE.md
+/.agents/
+/.claude/
+/.codex/
+/blueprint/
+/visitly-design/
