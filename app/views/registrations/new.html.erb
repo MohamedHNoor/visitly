@@ -1,0 +1,16 @@
+<%= render "shared/authentication_shell", title: "A lighter workday starts here." do %>
+  <p class="auth-description">Verify your email, then create your workspace to start your 30-day trial. No card required.</p>
+  <%= render "shared/authentication_feedback", record: @user %>
+  <%= form_with model: @user, url: registration_path, class: "auth-form" do |form| %>
+    <% { display_name: "Your name", email_address: "Email address" }.each do |field, label| %>
+      <div class="auth-field">
+      <%= form.label field, label %>
+      <%= form.public_send(field == :email_address ? :email_field : :text_field, field, required: true, autocomplete: field == :email_address ? "email" : "name", class: "auth-input", placeholder: field == :email_address ? "you@business.co.nz" : "Your full name", aria: { invalid: @user.errors[field].any?, describedby: @user.errors[field].any? ? "#{field}-error" : nil }) %>
+      <% if @user.errors[field].any? %><p class="auth-field-error" id="<%= field %>-error"><%= @user.errors[field].join(", ") %></p><% end %>
+      </div>
+    <% end %>
+    <%= render "shared/password_fields", form: form, record: @user %>
+    <%= form.submit "Create account", class: "btn auth-submit", data: { turbo_submits_with: "Creating…" } %>
+  <% end %>
+  <p class="auth-switch">Already registered? <%= link_to "Sign in", new_session_path %></p>
+<% end %>

@@ -1,0 +1,22 @@
+<% content_for :title, "Workspace invitation · Visitly" %>
+<main id="main" class="invitation-page">
+  <%= link_to root_path, class: "auth-logo" do %><%= image_tag "visitly-logo.svg", alt: "Visitly", width: 138, height: 36 %><% end %>
+  <h1 class="invitation-heading">Workspace invitation</h1>
+  <% if @message %><p role="alert" class="auth-feedback"><%= @message %></p><% end %>
+  <% if @invitation&.available? %>
+    <p class="mt-4">You’re invited to <strong><%= @invitation.business.name %></strong> as <%= @invitation.role.capitalize %>.</p>
+    <p class="mt-4 text-muted">Sign in with the invited email. If you’re new, register and verify that email first. You’ll come back to this invitation after signing in, so don’t create a separate workspace.</p>
+    <% if Current.user %>
+      <% if @blocker %>
+        <p role="status" class="auth-feedback mt-6"><%= @blocker %></p>
+      <% else %>
+        <%= button_to "Accept invitation", invitation_acceptance_path, params: { token: @token }, class: "btn mt-6", data: { turbo_submits_with: "Accepting…" } %>
+      <% end %>
+      <%= button_to "Sign out to use another account", session_path, method: :delete, class: "auth-link mt-4" %>
+    <% else %>
+      <div class="invitation-entry-actions"><%= link_to "Sign in", new_session_path, class: "btn" %><%= link_to "Register", new_registration_path, class: "btn btn-secondary" %></div>
+    <% end %>
+  <% else %>
+    <p role="alert" class="mt-4">This invitation is invalid, expired, revoked or already accepted. Ask the workspace Owner for a new invitation.</p>
+  <% end %>
+</main>

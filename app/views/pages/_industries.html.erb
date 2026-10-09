@@ -1,23 +1,23 @@
 <section id="industries" class="section-anchor pb-12.5 md:pb-20" aria-labelledby="industries-heading">
-  <div class="mb-9 max-w-162.5">
+  <div class="marketing-section-intro">
     <p class="eyebrow">Made for your kind of work</p>
-    <h2 id="industries-heading" class="mb-4.5 mt-3 text-[32px] font-bold leading-[1.2] tracking-[-1.3px] md:text-[42px] md:tracking-[-1.8px]">
+    <h2 id="industries-heading" class="marketing-section-heading">
       Different services.<br> The same calmer schedule.
     </h2>
   </div>
 
-  <div class="grid gap-5 md:grid-cols-2">
+  <div class="marketing-industry-grid">
     <% [
       [ :home, "Residential cleaning", "Build dependable recurring work, with property details and clear staff assignments at every visit.",
         [ "First-visit and regular-clean pricing", "Weekly, fortnightly and four-weekly visits", "Secure property and access information" ] ],
       [ :car, "Mobile car detailing", "Bring the right service to the right vehicle, with site requirements and weather changes kept organised.",
         [ "Vehicle category and service selection", "Parking, water and power requirements", "Customer-approved alternative times" ] ]
     ].each do |icon_name, title, body, points| %>
-      <article class="rounded-3xl p-6.25 md:p-8.5 <%= icon_name == :car ? "bg-detail" : "bg-sage" %>">
+      <article class="marketing-industry-card <%= icon_name == :car ? "bg-detail" : "bg-sage" %>">
         <div class="service-mark bg-white/60 <%= "text-detail-ink" if icon_name == :car %>"><%= icon(icon_name) %></div>
-        <h3 class="mb-3.25 mt-6.25 text-2xl font-bold tracking-[-0.3px]"><%= title %></h3>
+        <h3 class="marketing-industry-heading"><%= title %></h3>
         <p class="max-w-107.5 text-muted"><%= body %></p>
-        <ul class="mt-3 list-disc pl-4.5 text-[13px] leading-loose text-muted">
+        <ul class="marketing-industry-points">
           <% points.each do |point| %>
             <li><%= point %></li>
           <% end %>

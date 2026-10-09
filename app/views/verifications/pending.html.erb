@@ -1,0 +1,8 @@
+<% content_for :title, "Check your email · Visitly" %>
+<main id="main" class="mx-auto max-w-md px-6 py-16">
+  <h1 class="text-3xl font-bold">Check your email</h1>
+  <%= render "shared/authentication_feedback" %>
+  <p class="mt-4">Verify your email before creating your workspace. Your trial starts when you create it. Verification links expire after 24 hours.</p>
+  <%= button_to "Send a new verification link", verification_path, class: "btn mt-6", data: { turbo_submits_with: "Sending…" } %>
+  <%= button_to "Sign out", session_path, method: :delete, class: "btn btn-secondary mt-4" %>
+</main>

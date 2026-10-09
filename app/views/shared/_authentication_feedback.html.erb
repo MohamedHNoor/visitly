@@ -1,0 +1,8 @@
+<% message = local_assigns[:message] || @notice || flash[:notice] || flash[:alert] %>
+<% if message.present? %><p id="auth-feedback" role="<%= local_assigns[:error] ? "alert" : "status" %>" class="auth-feedback"><%= message %></p><% end %>
+<% if local_assigns[:record]&.errors&.any? %>
+  <div id="form-errors" role="alert" tabindex="-1" autofocus class="auth-feedback auth-feedback-error">
+    <h2 class="font-semibold">Please check your details</h2>
+    <ul class="mt-2 list-disc pl-5"><% record.errors.full_messages.each do |error| %><li><%= error %></li><% end %></ul>
+  </div>
+<% end %>

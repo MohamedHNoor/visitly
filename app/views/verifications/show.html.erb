@@ -1,0 +1,11 @@
+<% content_for :title, "Verify your email · Visitly" %>
+<main id="main" class="mx-auto max-w-md px-6 py-16">
+  <h1 class="text-3xl font-bold">Verify your email</h1>
+  <% if @valid %>
+    <p class="mt-4">Confirm your email to continue setting up Visitly.</p>
+    <%= button_to "Verify email", verification_path, method: :patch, params: { token: @token }, class: "btn mt-6", data: { turbo_submits_with: "Verifying…" } %>
+  <% else %>
+    <p role="alert" class="mt-4">This link is invalid, expired or already used.</p>
+    <%= link_to "Sign in to request a new link", new_session_path, class: "btn mt-6" %>
+  <% end %>
+</main>

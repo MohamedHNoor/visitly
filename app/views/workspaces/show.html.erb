@@ -1,0 +1,7 @@
+<main id="main" class="workspace-page">
+  <h1 class="text-3xl font-bold"><%= @business ? @business.name : "Your workspace" %></h1>
+  <p class="mt-4">Signed in as <%= Current.user.display_name %> · <%= @membership.role.capitalize %></p>
+  <p class="mt-4">Your workspace is ready. More setup tools are coming soon.</p>
+  <% if @membership.role == "owner" %><%= link_to "Invite your team", invitations_path, class: "btn mt-6" %><% end %>
+  <%= button_to "Sign out", session_path, method: :delete, class: "btn mt-6" %>
+</main>

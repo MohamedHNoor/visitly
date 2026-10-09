@@ -49,4 +49,15 @@ RSpec.describe "Marketing homepage", type: :request do
       expect(response.body).not_to include(%(href="#{target}))
     end
   end
+  it "connects trial calls to action and desktop/mobile sign-in links" do
+    document = Nokogiri::HTML(response.body)
+    trial_links = document.css("a").select { |link| link.text.start_with?("Start") }
+    expect(trial_links.size).to eq(4)
+    expect(trial_links.map { |link| link["href"] }.uniq).to eq([ new_registration_path ])
+    expect(document.css("a[href='/login']").size).to eq(2)
+    get new_session_path
+    expect(response).to have_http_status(:ok)
+    get new_registration_path
+    expect(response).to have_http_status(:ok)
+  end
 end

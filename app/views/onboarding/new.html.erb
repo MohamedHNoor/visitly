@@ -1,0 +1,30 @@
+<% content_for :title, "Create your workspace · Visitly" %>
+<header class="workspace-header">
+  <%= link_to root_path, class: "auth-logo" do %><%= image_tag "visitly-logo.svg", alt: "Visitly", width: 138, height: 36 %><% end %>
+  <span class="workspace-trial-badge">30-day trial · No card required</span>
+</header>
+<main id="main" class="workspace-setup-page">
+  <p class="eyebrow">Welcome to Visitly</p>
+  <h1 class="workspace-setup-heading">Let’s make it feel like your business.</h1>
+  <p class="mt-4 text-muted">Start with the basics. You can refine services and invite your team next.</p>
+  <section class="workspace-details-panel" aria-label="Business details">
+    <%= render "shared/authentication_feedback", record: @business %>
+    <%= form_with model: @business, url: onboarding_path, class: "auth-form" do |form| %>
+      <div class="auth-field">
+        <%= form.label :name, "Business name" %>
+        <%= form.text_field :name, required: true, autocomplete: "organization", placeholder: "Your business name", class: "auth-input", aria: { invalid: @business.errors[:name].any?, describedby: @business.errors[:name].any? ? "name-error" : nil } %>
+        <% if @business.errors[:name].any? %><p id="name-error" class="auth-field-error"><%= @business.errors[:name].join(", ") %></p><% end %>
+      </div>
+      <% { industry: [ "Business type", [ [ "Residential cleaning", "cleaning" ], [ "Mobile car detailing", "detailing" ] ] ], timezone: [ "Timezone", [ "Pacific/Auckland", "Pacific/Chatham" ] ] }.each do |field, (label, options)| %>
+        <div class="auth-field">
+          <%= form.label field, label %>
+          <%= form.select field, options, { prompt: field == :industry ? "Choose your business type" : nil }, required: true, class: "auth-input", aria: { invalid: @business.errors[field].any?, describedby: @business.errors[field].any? ? "#{field}-error" : nil } %>
+          <% if @business.errors[field].any? %><p id="<%= field %>-error" class="auth-field-error"><%= @business.errors[field].join(", ") %></p><% end %>
+        </div>
+      <% end %>
+      <p class="workspace-trial-note">Your 30-day free trial starts when you create this workspace. Your business collects customer service payments using its own arrangements.</p>
+      <%= form.submit "Create workspace", class: "btn auth-submit", data: { turbo_submits_with: "Creating workspace…" } %>
+    <% end %>
+  </section>
+  <%= button_to "Sign out", session_path, method: :delete, class: "auth-link mt-6" %>
+</main>

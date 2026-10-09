@@ -1,0 +1,19 @@
+<% content_for :title, "Your workspace is ready · Visitly" %>
+<header class="workspace-header-simple">
+  <%= link_to root_path, class: "auth-logo" do %><%= image_tag "visitly-logo.svg", alt: "Visitly", width: 138, height: 36 %><% end %>
+</header>
+<main id="main" class="workspace-setup-page">
+  <section class="workspace-completion-panel">
+    <span class="workspace-success-mark"><%= icon(:check, css_class: "size-8") %></span>
+    <h1 class="workspace-heading">Your workspace is ready.</h1>
+    <p class="mt-4 text-muted"><%= @business.name %> now has its own Visitly workspace. Your 30-day trial has started.</p>
+    <h2 class="workspace-section-heading">Your next setup steps</h2>
+    <p class="mt-2 text-sm text-muted">These tools are coming as Visitly is built.</p>
+    <ol class="workspace-setup-list">
+      <% [ "Add your services", "Set staff availability", "Preview your booking page" ].each_with_index do |task, index| %>
+        <li class="workspace-setup-item"><span class="workspace-step-number"><%= index + 1 %></span><span class="font-semibold"><%= task %></span></li>
+      <% end %>
+    </ol>
+    <%= link_to "Open workspace", workspace_path, class: "btn mt-8" %>
+  </section>
+</main>

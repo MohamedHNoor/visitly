@@ -1,0 +1,21 @@
+<%= render "shared/authentication_shell", title: "Welcome back." do %>
+  <p class="auth-description">Sign in to your Visitly workspace.</p>
+  <%= render "shared/authentication_feedback", message: local_assigns[:error], error: local_assigns[:error].present? %>
+  <%= form_with url: session_path, class: "auth-form" do |form| %>
+    <div class="auth-field">
+      <%= form.label :email_address, "Email address" %>
+      <%= form.email_field :email_address, value: params[:email_address], required: true, autocomplete: "username", placeholder: "you@business.co.nz", class: "auth-input", aria: { describedby: local_assigns[:error].present? ? "auth-feedback" : nil } %>
+    </div>
+    <div class="auth-field">
+      <div class="auth-label-row">
+        <%= form.label :password %>
+        <%= link_to "Forgot password?", new_password_path, class: "auth-link" %>
+      </div>
+      <%= render layout: "shared/password_input", locals: { input_id: form.field_id(:password) } do %>
+        <%= form.password_field :password, required: true, autocomplete: "current-password", maxlength: 72, class: "auth-input", aria: { describedby: local_assigns[:error].present? ? "auth-feedback" : nil }, data: { password_visibility_target: "input" } %>
+      <% end %>
+    </div>
+    <%= form.submit "Sign in", class: "btn auth-submit", data: { turbo_submits_with: "Signing in…" } %>
+  <% end %>
+  <p class="auth-switch">New to Visitly? <%= link_to "Create account", new_registration_path %></p>
+<% end %>

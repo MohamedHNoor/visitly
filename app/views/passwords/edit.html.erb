@@ -1,0 +1,13 @@
+<%= render "shared/authentication_shell", title: "Choose a new password" do %>
+  <% if @valid %>
+    <%= render "shared/authentication_feedback", record: @user %>
+    <%= form_with model: @user, url: password_path, method: :patch, class: "mt-6 grid gap-3" do |form| %>
+      <%= hidden_field_tag :token, @token %>
+      <%= render "shared/password_fields", form: form, record: @user %>
+      <%= form.submit "Reset password", class: "btn mt-3", data: { turbo_submits_with: "Updating…" } %>
+    <% end %>
+  <% else %>
+    <p role="alert" class="mt-4">This link is invalid, expired or already used, or too many attempts were made.</p>
+    <%= link_to "Request another reset link", new_password_path, class: "btn mt-6" %>
+  <% end %>
+<% end %>

@@ -1,0 +1,32 @@
+<% content_for :title, "#{title} · Visitly" %>
+<div class="auth-shell">
+  <aside class="auth-story">
+    <%= link_to root_path, class: "auth-logo" do %><%= image_tag "visitly-logo.svg", alt: "Visitly", width: 138, height: 36 %><% end %>
+    <div class="auth-story-copy">
+      <p class="eyebrow">A calmer way to run your day</p>
+      <h2>Good work.<br>Less paperwork.</h2>
+      <p>Bring your bookings, recurring visits and team together in one calm workspace.</p>
+    </div>
+    <div class="auth-preview" aria-hidden="true">
+      <div class="auth-preview-heading"><span class="eyebrow">Your day, organised</span><span class="auth-preview-mark"><%= icon(:check) %></span></div>
+      <p class="auth-preview-title">Everything in its place.</p>
+      <% [ [ "09:00", :home, "Home clean", "Fortnightly visit" ], [ "11:30", :car, "Mobile detailing", "Interior & exterior" ] ].each do |time, kind, label, detail| %>
+        <div class="auth-preview-row">
+          <span class="auth-preview-time"><%= time %></span>
+          <span class="service-mark <%= "service-mark-detail" if kind == :car %>"><%= icon(kind) %></span>
+          <span class="auth-preview-service"><strong><%= label %></strong><span><%= detail %></span></span>
+          <%= icon(:check, css_class: "text-brand") %>
+        </div>
+      <% end %>
+      <div class="auth-preview-note"><%= icon(:repeat) %><span>Next fortnight? Already organised.</span></div>
+    </div>
+    <p class="auth-story-footer">Built for New Zealand cleaning and detailing businesses.</p>
+  </aside>
+  <main id="main" class="auth-main">
+    <div class="auth-content">
+      <%= link_to root_path, class: "auth-logo auth-form-logo" do %><%= image_tag "visitly-logo.svg", alt: "Visitly", width: 138, height: 36 %><% end %>
+      <h1 class="auth-heading"><%= title %></h1>
+      <%= yield %>
+    </div>
+  </main>
+</div>

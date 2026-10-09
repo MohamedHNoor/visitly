@@ -1,0 +1,37 @@
+<% content_for :title, "Team invitations · Visitly" %>
+<main id="main" class="invitations-page">
+  <%= link_to "Back to workspace", workspace_path, class: "auth-link" %>
+  <h1 class="workspace-heading">Team invitations</h1>
+  <p class="mt-3 text-muted">Invite a Scheduler or Staff member. Links expire after seven days.</p>
+  <%= render "shared/authentication_feedback", record: @invitation %>
+  <%= form_with model: @invitation, class: "auth-form invitation-form-panel" do |form| %>
+    <% { email_address: "Email address", role: "Workspace role" }.each do |field, label| %>
+      <div class="auth-field">
+        <%= form.label field, label %>
+        <% if field == :role %>
+          <%= form.select field, [ [ "Scheduler", "scheduler" ], [ "Staff", "staff" ] ], {}, class: "auth-input", aria: { invalid: @invitation.errors[field].any?, describedby: @invitation.errors[field].any? ? "#{field}-error" : nil } %>
+        <% else %>
+          <%= form.email_field field, required: true, autocomplete: "email", class: "auth-input", aria: { invalid: @invitation.errors[field].any?, describedby: @invitation.errors[field].any? ? "#{field}-error" : nil } %>
+        <% end %>
+        <% if @invitation.errors[field].any? %><p id="<%= field %>-error" class="auth-field-error"><%= @invitation.errors[field].join(", ") %></p><% end %>
+      </div>
+    <% end %>
+    <%= form.submit "Send invitation", class: "btn auth-submit", data: { turbo_submits_with: "Sending…" } %>
+  <% end %>
+  <h2 class="workspace-section-heading">Invitations</h2>
+  <% if @invitations.empty? %><p class="mt-3 text-muted">No invitations yet.</p><% end %>
+  <ul class="mt-4 grid gap-3">
+    <% @invitations.each do |invitation| %>
+      <li class="invitation-card">
+        <p class="break-all font-semibold"><%= invitation.email_address %></p>
+        <p class="mt-1 text-sm text-muted"><%= invitation.role.capitalize %> · <%= invitation.accepted_at? ? "Accepted" : invitation.revoked_at? ? "Revoked" : invitation.available? ? "Pending" : "Expired" %></p>
+        <% unless invitation.accepted_at? || invitation.revoked_at? %>
+          <div class="invitation-actions">
+            <%= button_to "Resend", resend_invitation_path(invitation), class: "btn btn-secondary", data: { turbo_submits_with: "Sending…" } %>
+            <%= button_to "Revoke", invitation_path(invitation), method: :delete, class: "btn btn-secondary" %>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</main>
