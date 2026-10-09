@@ -1,0 +1,41 @@
+<%# Plans: monthly NZD excluding GST. %>
+<section id="pricing" class="section-anchor pb-12.5 md:pb-20" aria-labelledby="pricing-heading">
+  <div class="mb-9 max-w-162.5">
+    <p class="eyebrow">Room to grow</p>
+    <h2 id="pricing-heading" class="mb-4.5 mt-3 text-[32px] font-bold leading-[1.2] tracking-[-1.3px] md:text-[42px] md:tracking-[-1.8px]">
+      One clear price.<br> A whole lot less admin.
+    </h2>
+    <p class="text-muted">Every plan includes unlimited bookings and all features, with no booking fees. Choose the size that fits your team.</p>
+  </div>
+
+  <div class="grid gap-5 md:grid-cols-3">
+    <% [
+      { name: "Solo", price: 29, staff: "1 active bookable staff member" },
+      { name: "Team", price: 49, staff: "Up to 5 active bookable staff", featured: true },
+      { name: "Growth", price: 99, staff: "Unlimited active bookable staff" }
+    ].each do |plan| %>
+      <article class="relative flex flex-col rounded-[20px] p-6.5 lg:p-7.5 <%= plan[:featured] ? "border-2 border-brand bg-[#f1f7ee]" : "border border-line bg-white" %>">
+        <div class="flex items-center justify-between gap-3">
+          <h3 class="text-[17px] font-bold tracking-[-0.3px]"><%= plan[:name] %></h3>
+          <% if plan[:featured] %>
+            <span class="whitespace-nowrap rounded-full bg-sage px-2.5 py-1.25 text-[11px] font-semibold text-brand">For growing teams</span>
+          <% end %>
+        </div>
+
+        <p class="mt-5.5 text-[47px] font-bold leading-tight tracking-[-2px]">
+          NZ$<%= plan[:price] %>
+          <span class="mt-1 block text-xs font-normal leading-normal tracking-normal text-muted">/ month excl. GST</span>
+        </p>
+        <p class="mt-2.5 text-xs text-muted"><%= plan[:staff] %></p>
+
+        <ul class="mt-6 text-[13px] leading-[2.5] text-muted">
+          <% [ "Unlimited bookings", "Recurring visit scheduling", "All features included", "No booking fees" ].each do |item| %>
+            <li class="flex items-center gap-2"><%= icon(:check, css_class: "size-4 text-brand") %><%= item %></li>
+          <% end %>
+        </ul>
+      </article>
+    <% end %>
+  </div>
+
+  <p class="mt-4.5 text-xs text-muted">Prices are in New Zealand dollars and exclude GST. Start with a 30-day free trial. No card required.</p>
+</section>

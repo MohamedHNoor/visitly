@@ -1,0 +1,36 @@
+<%# Trial CTAs point to the pricing section until registration exists (Feature 2). %>
+<header class="relative mx-auto flex h-19 max-w-7xl items-center justify-between px-5.5 md:h-22 md:px-7 lg:px-9"
+        data-controller="disclosure"
+        data-action="keydown.esc->disclosure#close click@window->disclosure#closeOnOutsideClick">
+  <%= link_to root_path, class: "inline-flex rounded-[10px]" do %>
+    <%= image_tag "visitly-logo.svg", alt: "Visitly", width: 138, height: 36, class: "h-9 w-auto" %>
+  <% end %>
+
+  <nav aria-label="Main" class="hidden items-center gap-4 text-[13px] md:flex lg:gap-6.5">
+    <a href="#features" class="rounded transition-colors hover:text-brand">Features</a>
+    <a href="#industries" class="rounded transition-colors hover:text-brand">Who it’s for</a>
+    <a href="#pricing" class="rounded transition-colors hover:text-brand">Pricing</a>
+    <a href="#pricing" class="btn">Start free trial</a>
+  </nav>
+
+  <button type="button"
+          class="btn btn-secondary px-3 md:hidden"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          data-disclosure-target="button"
+          data-action="disclosure#toggle">
+    <%= icon(:menu) %>
+  </button>
+
+  <nav id="mobile-menu"
+       aria-label="Mobile"
+       hidden
+       class="absolute inset-x-5.5 top-17 z-30 flex flex-col gap-1 rounded-card border border-line bg-white p-3 text-[15px] shadow-[0_14px_32px_#284b291a] md:hidden"
+       data-disclosure-target="panel">
+    <a href="#features" class="flex min-h-11 items-center rounded-[10px] px-3 hover:bg-sage" data-action="disclosure#close">Features</a>
+    <a href="#industries" class="flex min-h-11 items-center rounded-[10px] px-3 hover:bg-sage" data-action="disclosure#close">Who it’s for</a>
+    <a href="#pricing" class="flex min-h-11 items-center rounded-[10px] px-3 hover:bg-sage" data-action="disclosure#close">Pricing</a>
+    <a href="#pricing" class="btn mt-2" data-action="disclosure#close">Start free trial</a>
+  </nav>
+</header>

@@ -1,0 +1,26 @@
+<section id="features" class="section-anchor py-12.5 md:py-20" aria-labelledby="features-heading">
+  <div class="mb-9 max-w-162.5">
+    <p class="eyebrow">A lighter workday</p>
+    <h2 id="features-heading" class="mb-4.5 mt-3 text-[32px] font-bold leading-[1.2] tracking-[-1.3px] md:text-[42px] md:tracking-[-1.8px]">
+      Your bookings, team and customers.<br class="hidden md:inline"> All on the same page.
+    </h2>
+    <p class="text-muted">Spend less time stitching together messages, calendars and spreadsheets. Make room for the work you do best.</p>
+  </div>
+
+  <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+    <% [
+      [ :calendar, "Bookings without the back-and-forth", "Share your booking page. Let customers choose services and available times, while you stay in control." ],
+      [ :repeat, "Regular work, reliably organised", "Set a weekly, fortnightly or four-weekly cadence. Manage skips, pauses and changes in one place." ],
+      [ :users, "A schedule your team can trust", "Assign the right staff, protect availability and allow time to travel between visits." ],
+      [ :mail, "Customers kept in the loop", "Send booking confirmations and email reminders, with secure links to manage visits." ],
+      [ :pin, "The right details, at hand", "Keep property, vehicle and site requirements alongside each visit, ready for your team." ],
+      [ :money, "Payments on your terms", "Collect payments your own way. Record receipts, refunds and outstanding balances in Visitly." ]
+    ].each do |icon_name, title, body| %>
+      <article class="rounded-[20px] border border-line bg-white p-5.5 lg:p-6.75">
+        <div class="service-mark mb-5.5"><%= icon(icon_name) %></div>
+        <h3 class="text-[17px] font-bold tracking-[-0.3px]"><%= title %></h3>
+        <p class="mt-3 text-[13px] leading-[1.75] text-muted"><%= body %></p>
+      </article>
+    <% end %>
+  </div>
+</section>

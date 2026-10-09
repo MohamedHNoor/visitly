@@ -1,0 +1,66 @@
+<section class="grid items-center gap-9.5 pb-12.5 pt-8.75 md:grid-cols-2 md:gap-7.5 md:pb-23.75 md:pt-18 lg:gap-13.75" aria-labelledby="hero-heading">
+  <div>
+    <p class="eyebrow">For New Zealand mobile service businesses</p>
+    <h1 id="hero-heading" class="mb-6 mt-5 text-[49px] font-bold leading-[1.04] tracking-[-2.5px] md:text-[54px] md:tracking-[-3.6px] lg:text-[clamp(48px,5.1vw,70px)] 2xl:text-[74px]">
+      Less admin.<br>
+      <span class="text-brand">More happy<br>customers.</span>
+    </h1>
+    <p class="max-w-110 text-[15px] leading-[1.75] text-muted md:text-[17px]">
+      The booking and scheduling home for residential cleaning and mobile car detailing businesses.
+    </p>
+    <div class="mb-4 mt-7.5 flex flex-wrap items-center gap-2 md:gap-3">
+      <a href="#pricing" class="btn min-h-12">Start your 30-day trial</a>
+    </div>
+    <p class="flex items-center gap-2 text-xs text-muted">
+      <%= icon(:check, css_class: "text-brand") %>
+      No card required. No booking fees.
+    </p>
+  </div>
+
+  <%# Decorative product illustration with fictional sample visits. %>
+  <div class="relative mr-2 min-w-0 -rotate-1 rounded-[34px] bg-[#e6eee0] px-4 pb-10.5 pt-5.5 md:mr-0 md:px-3.75 md:pb-10 md:pt-6 lg:px-6 lg:pb-12 lg:pt-8" aria-hidden="true">
+    <div class="absolute -right-2 -top-6.25 z-0 size-40 rounded-full border border-[#b6c7ae] md:-right-4.5"></div>
+
+    <div class="relative rotate-1 rounded-card bg-white p-4.25 shadow-[0_14px_32px_#284b291a] md:p-5.75">
+      <div class="mb-4.5 flex items-center justify-between gap-3">
+        <div>
+          <span class="eyebrow">Monday, 12 October</span>
+          <p class="mt-1.25 text-[13px] font-bold tracking-[-0.3px] text-ink md:text-[17px]">A good day, already planned.</p>
+        </div>
+        <span class="grid size-8.5 place-items-center rounded-full bg-[#e4ece4] text-[11px] font-bold">MC</span>
+      </div>
+
+      <% [
+        [ "09:00", :home, "Sarah Wilson", "Fortnightly home clean" ],
+        [ "11:30", :car, "James Taylor", "Interior & exterior detail" ],
+        [ "14:00", :home, "Emma Brown", "Weekly home clean" ]
+      ].each do |time, kind, name, service| %>
+        <div class="flex items-center gap-2 border-t border-line px-2.5 py-3.75 md:gap-3.5">
+          <span class="min-w-11.5 text-xs font-bold"><%= time %></span>
+          <span class="service-mark hidden lg:grid <%= "service-mark-detail" if kind == :car %>"><%= icon(kind) %></span>
+          <span class="flex-1">
+            <strong class="block text-xs md:text-sm"><%= name %></strong>
+            <span class="mt-0.75 block text-[10px] text-muted md:text-xs"><%= service %></span>
+          </span>
+          <span class="whitespace-nowrap rounded-full bg-sage px-1.75 py-1 text-[9px] font-semibold text-brand md:px-2.5 md:py-1.25 md:text-[11px]">Confirmed</span>
+        </div>
+      <% end %>
+
+      <div class="mt-4.25 flex items-center justify-between gap-3 text-xs">
+        <span class="text-muted">3 visits · 2 team members</span>
+        <span class="text-brand">View your week →</span>
+      </div>
+    </div>
+
+    <div class="absolute -right-1.5 bottom-2.5 flex rotate-2 items-center gap-2 rounded-[13px] bg-[#fff6e8] px-4.5 py-3.75 text-[10px] font-semibold shadow-[0_8px_20px_#284b2917] md:-right-4.5 md:text-xs">
+      <%= icon(:repeat) %>
+      Next fortnight? Already organised.
+    </div>
+  </div>
+</section>
+
+<div class="flex flex-col gap-2.5 border-y border-line py-6 text-[11px] text-muted md:flex-row md:justify-between md:gap-5 md:text-xs">
+  <span>Built for work at your customer’s door</span>
+  <span>NZD pricing · Your own booking page</span>
+  <span>Your business. Your customer relationships.</span>
+</div>

@@ -1,1 +1,90 @@
 @import "tailwindcss";
+
+/* Visitly tokens, from visitly-design/CODING-AGENT-HANDOFF.md and the prototype :root. */
+@theme {
+  --color-ink: #173b32;
+  --color-brand: #226e54;
+  /* Design muted #65796f darkened to meet WCAG AA 4.5:1 on cream, sage and detail surfaces. */
+  --color-muted: #5b6f65;
+  --color-line: #dce5de;
+  --color-sage: #eaf2e9;
+  --color-canvas: #f6f8f3;
+  --color-cream: #fafbf6;
+  --color-amber: #f2b976;
+  --color-detail: #edf2fc;
+  --color-detail-ink: #5f7ab1;
+
+  --font-sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --radius-card: 18px;
+
+  /* Prototype breakpoints: mobile at 760px and below, compact desktop at 1150px. */
+  --breakpoint-md: 47.5625rem;
+  --breakpoint-lg: 71.9375rem;
+  --breakpoint-2xl: 100rem;
+}
+
+@layer base {
+  :focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-[10px] border border-brand bg-brand px-4.5 py-2.5 text-[13px] font-semibold text-white;
+    transition: filter 150ms ease-out, transform 150ms ease-out;
+  }
+
+  .btn:hover {
+    filter: brightness(0.94);
+  }
+
+  .btn:active {
+    transform: scale(0.97);
+  }
+
+  .btn-secondary {
+    @apply border-line bg-white text-ink;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-bold uppercase tracking-[1.8px] text-brand;
+  }
+
+  .icon {
+    @apply size-4.75 shrink-0 fill-none stroke-current;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .service-mark {
+    @apply grid size-10 place-items-center rounded-xl bg-sage text-brand;
+  }
+
+  .service-mark-detail {
+    @apply bg-detail text-detail-ink;
+  }
+
+  .section-anchor {
+    @apply scroll-mt-6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn {
+      transition: none;
+    }
+
+    .btn:active {
+      transform: none;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<section id="faq" class="section-anchor mx-auto max-w-212.5 pb-12.5 md:pb-20" aria-labelledby="faq-heading">
+  <h2 id="faq-heading" class="mb-5.5 text-[25px] font-bold leading-[1.2] tracking-[-1px] md:text-3xl">A few things you might be wondering.</h2>
+
+  <% [
+    [ "Do my customers pay through Visitly?",
+      "You collect service payments using your own arrangements. Visitly lets you manually record receipts, refunds and balances. Your Visitly subscription is separate." ],
+    [ "Can I schedule recurring visits?",
+      "Yes. Set weekly, fortnightly or every-four-week schedules. Skip or pause visits without shifting the cadence." ],
+    [ "What happens after the free trial?",
+      "Your 30-day trial needs no card. Choose a paid plan before it ends to keep taking bookings. If you don’t subscribe, your workspace becomes read-only for seven days: you can view and export your records, but you can’t take new bookings, change visits or generate recurring visits. For the following seven days you can only download or delete your data. Unpaid workspaces are then deleted, 14 days after the trial ends, and we’ll let you know beforehand. Confirmed visits are never automatically cancelled." ],
+    [ "Is Visitly available outside New Zealand?",
+      "Visitly is designed for New Zealand businesses at launch. Australian support is outside the initial scope." ]
+  ].each do |question, answer| %>
+    <details class="group border-b border-line py-5.5">
+      <summary class="flex cursor-pointer list-none items-center justify-between gap-4 rounded text-base font-semibold [&::-webkit-details-marker]:hidden">
+        <%= question %>
+        <svg class="icon size-4.5 text-muted transition-transform duration-200 ease-out group-open:rotate-180 motion-reduce:transition-none" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg>
+      </summary>
+      <p class="mt-3.75 text-muted"><%= answer %></p>
+    </details>
+  <% end %>
+</section>
