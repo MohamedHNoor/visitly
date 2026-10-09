@@ -45,3 +45,9 @@
 /.codex/
 /blueprint/
 /visitly-design/
+
+# macOS metadata
+.DS_Store
+
+# Local RSpec options
+/.rspec-local
